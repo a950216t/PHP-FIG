@@ -5,17 +5,6 @@ PHP程式碼書寫規範（正體中文版）指南
 翻譯過程中參照了 [莫希爾(Mosil)手札][] 的繁體中文版，以及 [Corrie Zhao][] 組織翻譯的簡體中文版，
 譯文中為了讓語句通順，便於理解，沒有對原文逐字翻譯，個別語句與原文原意可能略有偏差，希望告知指正。
 
-目前官方已制定的規範包括以下六份檔案：
-
-  - [PSR-0](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-0-cn.md) (已棄用)
-  - [PSR-1](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-1-basic-coding-standard-cn.md)
-  - [PSR-2](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-2-coding-style-guide-cn.md)
-  - [PSR-2補充](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-2-coding-style-guide-meta-cn.md)
-  - [PSR-3](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-3-logger-interface-cn.md)
-  - [PSR-4](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-4-autoloader-cn.md)
-
-
-
 - 2014/04/25    增加`PSR-2補充`檔案以及修改之前版本中的翻譯不當與錯誤。
 - 2014/07/31    增加`PSR-4`。
 
@@ -24,12 +13,11 @@ PHP程式碼書寫規範（正體中文版）指南
 [莫希爾(Mosil)手札]: https://github.com/mosil/fig-standards
 [Corrie Zhao]: https://github.com/hfcorriez/fig-standards
 
-
 以下是原版的導讀：
 
 ---------------
 
-PHP互操作性框架制定小組
+PHP通用性框架小組
 ====================================
 
 組建本小組的目的是，通過在各項目的代表之間討論他們共同的編碼規範，以制定一個協作標準。本規範的主要面向對象是本小組的各個組成成員，當然，同時也歡迎追蹤本規範的其它PHP社區採用本規範。
