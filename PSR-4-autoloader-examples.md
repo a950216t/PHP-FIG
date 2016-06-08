@@ -1,58 +1,58 @@
-PSR-4 相关示例
+PSR-4 相關示例
 ================================
 
-以下是 PSR-4 规范的相关示例代码：
+以下是 PSR-4 規範的相關示例代碼：
 
-闭包的实现示例
+閉包的實現示例
 ---------------
 
 ```php
 <?php
 /**
- * 一个具体项目的实例
+ * 一個具體項目的實例
  * 
- * 当使用 SPL 注册此自动加载器后，执行以下语句将从 
- * /path/to/project/src/Baz/Qux.php 载入 \Foo\Bar\Baz\Qux 类：
+ * 當使用 SPL 註冊此自動加載器後，執行以下語句將從 
+ * /path/to/project/src/Baz/Qux.php 載入 \Foo\Bar\Baz\Qux 類：
  * 
  *      new \Foo\Bar\Baz\Qux;
  *      
- * @param string $class 完整的类名
+ * @param string $class 完整的類名
  * @return void
  */
 spl_autoload_register(function ($class) {
     
-    // 具体项目命名空间前缀
+    // 具體項目命名空間前綴
     $prefix = 'Foo\\Bar\\';
 
-    // 命名空间前缀的基目录
+    // 命名空間前綴的基目錄
     $base_dir = __DIR__ . '/src/';
     
-    // 判断类名是否具有本命名空间前缀
+    // 判斷類名是否具有本命名空間前綴
     $len = strlen($prefix);
     if (strncmp($prefix, $class, $len) !== 0) {
-        // 不含本命名空间前缀，退出本自动载入器
+        // 不含本命名空間前綴，登出本自動載入器
         return;
     }
     
-    // 截取相应类名
+    // 截取相應類名
     $relative_class = substr($class, $len);
     
-    // 将命名空间前缀替作为文件基目录，然后
-    // 将类名中的命名空间分隔符替换成文件分隔符,
-    // 最后添加 .php 后缀
+    // 將命名空間前綴替作為檔案基目錄，然後
+    // 將類名中的命名空間分隔符替換成檔案分隔符,
+    // 最後增加 .php 後綴
     $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
     
-    // 如果以上文件存在，则将其载入
+    // 如果以上檔案存在，則將其載入
     if (file_exists($file)) {
         require $file;
     }
 });
 ```
 
-类的实现示例
+類的實現示例
 -------------
 
-下面是一个可处理多命名空间的类实例
+下面是一個可處理多命名空間的類實例
 
 ```php
 <?php
@@ -96,8 +96,8 @@ namespace Example;
  *      <?php
  *      new \Foo\Bar\Qux\Quux;
  * 
- * 以下代码将由 /path/to/packages/foo-bar/tests/Qux/QuuxTest.php 
- * 载入 \Foo\Bar\Qux\QuuxTest 类
+ * 以下代碼將由 /path/to/packages/foo-bar/tests/Qux/QuuxTest.php 
+ * 載入 \Foo\Bar\Qux\QuuxTest 類
  * 
  *      <?php
  *      new \Foo\Bar\Qux\QuuxTest;
@@ -113,7 +113,7 @@ class Psr4AutoloaderClass
     protected $prefixes = array();
 
     /**
-     * 在 SPL 自动加载器栈中注册加载器
+     * 在 SPL 自動加載器棧中註冊加載器
      * 
      * @return void
      */
@@ -123,28 +123,28 @@ class Psr4AutoloaderClass
     }
 
     /**
-     * 添加命名空间前缀与文件基目录对
+     * 增加命名空間前綴與檔案基目錄對
      *
-     * @param string $prefix 命名空间前缀
-     * @param string $base_dir 命名空间中类文件的基目录
-     * @param bool $prepend 为 True 时，将基目录插到最前，这将让其作为第一个被搜索到，否则插到将最后。
+     * @param string $prefix 命名空間前綴
+     * @param string $base_dir 命名空間中類檔案的基目錄
+     * @param bool $prepend 為 True 時，將基目錄插到最前，這將讓其作為第一個被搜尋到，否則插到將最後。
      * @return void
      */
     public function addNamespace($prefix, $base_dir, $prepend = false)
     {
-        // 规范化命名空间前缀
+        // 規範化命名空間前綴
         $prefix = trim($prefix, '\\') . '\\';
         
-        // 规范化文件基目录
+        // 規範化檔案基目錄
         $base_dir = rtrim($base_dir, '/') . DIRECTORY_SEPARATOR;
         $base_dir = rtrim($base_dir, DIRECTORY_SEPARATOR) . '/';
 
-        // 初始化命名空间前缀数组
+        // 初始化命名空間前綴數組
         if (isset($this->prefixes[$prefix]) === false) {
             $this->prefixes[$prefix] = array();
         }
         
-        // 将命名空间前缀与文件基目录对插入保存数组
+        // 將命名空間前綴與檔案基目錄對插入儲存數組
         if ($prepend) {
             array_unshift($this->prefixes[$prefix], $base_dir);
         } else {
@@ -153,14 +153,14 @@ class Psr4AutoloaderClass
     }
 
     /**
-     * 由类名载入相应类文件
+     * 由類名載入相應類檔案
      *
-     * @param string $class 完整的类名
-     * @return mixed 成功载入则返回载入的文件名，否则返回布尔 false
+     * @param string $class 完整的類名
+     * @return mixed 成功載入則返回載入的檔案名，否則返回布爾 false
      */
     public function loadClass($class)
     {
-        // 当前命名空间前缀
+        // 目前命名空間前綴
         $prefix = $class;
         
         // work backwards through the namespace names of the fully-qualified
@@ -184,7 +184,7 @@ class Psr4AutoloaderClass
             $prefix = rtrim($prefix, '\\');   
         }
         
-        // 找不到相应文件
+        // 找不到相應檔案
         return false;
     }
     
@@ -216,22 +216,22 @@ class Psr4AutoloaderClass
                   . str_replace('\\', '/', $relative_class)
                   . '.php';
 
-            // 当文件存在时，在入之
+            // 當檔案存在時，在入之
             if ($this->requireFile($file)) {
-                // 完成载入
+                // 完成載入
                 return $file;
             }
         }
         
-        // 找不到相应文件
+        // 找不到相應檔案
         return false;
     }
     
     /**
-     * 当文件存在，则从文件系统载入之
+     * 當檔案存在，則從檔案系統載入之
      * 
-     * @param string $file 需要载入的文件
-     * @return bool 当文件存在则为 True，否则为 false
+     * @param string $file 需要載入的檔案
+     * @return bool 當檔案存在則為 True，否則為 false
      */
     protected function requireFile($file)
     {
@@ -244,9 +244,9 @@ class Psr4AutoloaderClass
 }
 ```
 
-### 单元测试
+### 單元測試
 
-以下是上面代码单元测试的一种实现：
+以下是上面代碼單元測試的一種實現：
 
 ```php
 <?php

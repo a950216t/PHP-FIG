@@ -1,42 +1,42 @@
 HTTP消息接口
 =====================
 
-本文档描述了在[RFC 7230][]和[RFC 7231][]中被描述来代表HTTP消息通用接口，以及在[RFC 3986][]中规定的URIs语法。
+本文檔描述了在[RFC 7230][]和[RFC 7231][]中被描述來代表HTTP消息通用接口，以及在[RFC 3986][]中規定的URIs語法。
 
 [RFC 7230]:http://tools.ietf.org/html/rfc7230
 [RFC 7231]:http://tools.ietf.org/html/rfc7231
 [RFC 3986]:http://tools.ietf.org/html/rfc3986
 [RFC 2119]: http://www.ietf.org/rfc/rfc2119.txt
 
-HTTP消息是Web开发的基础。Web浏览器和HTTP客户端之间，例如使用cURL创建一个发送到Web服务器的HTTP请求，Web服务器会返回一个HTTP响应。服务器端代码收到一个HTTP请求消息，并返回一个HTTP响应消息。
+HTTP消息是Web開發的基礎。Web瀏覽器和HTTP客戶端之間，例如使用cURL建立一個發送到Web服務器的HTTP請求，Web服務器會返回一個HTTP響應。服務器端代碼收到一個HTTP請求消息，並返回一個HTTP響應消息。
 
-HTTP消息通常对与最终的消费者用户来说是抽象的，但作为开发者，我们通常需要知道它们是如何构建以及如何访问和操纵它们，以执行我们的任务，是否可能被创建为到HTTP API的请求或处理传入请求。
+HTTP消息通常對與最終的消費者會員來說是抽像的，但作為開發者，我們通常需要知道它們是如何構建以及如何訪問和操縱它們，以執行我們的任務，是否可能被建立為到HTTP API的請求或處理傳入請求。
 
-每一个HTTP请求消息有一个具体形式：
+每一個HTTP請求消息有一個具體形式：
 ```php
 POST /path HTTP/1.1
 Host: example.com
 
 foo=bar&baz=bat
 ```
-一个请求的第一行是“请求行”，按照顺序包含了HTTP请求方法，请求的目标地址（通常是一个绝对URI或者服务器上的路径）以及HTTP协议的版本。接着是一个或多个HTTP头，一个空行，以及消息主体。
+一個請求的第一行是「請求行」，按照順序包含了HTTP請求方法，請求的目標地址（通常是一個絕對URI或者服務器上的路徑）以及HTTP協議的版本。接著是一個或多個HTTP頭，一個空行，以及消息主體。
 
-HTTP响应信息具有类似的结构：
+HTTP響應內容具有類似的結構：
 ```php
 HTTP/1.1 200 OK
 Content-Type: text/plain
 
 This is the response body
 ```
-第一行是“状态行”，按照顺序，依次包含了HTTP协议的版本，HTTP状态码，以及一个“原因分析”，也就是一个对人类友好可读的状态码的描述。像请求消息一样，随后一个或多个HTTP头，一个空行，以及消息主体。
+第一行是「狀態行」，按照順序，依次包含了HTTP協議的版本，HTTP狀態碼，以及一個「原因分析」，也就是一個對人類友好可讀的狀態碼的描述。像請求消息一樣，隨後一個或多個HTTP頭，一個空行，以及消息主體。
 
-本文档中描述的接口都是围绕HTTP消息的抽象和构成它们的元素。
+本文檔中描述的接口都是圍繞HTTP消息的抽像和構成它們的元素。
 
-关键词 “必须”("MUST")、“一定不可/一定不能”("MUST NOT")、“需要”("REQUIRED")、
-“将会”("SHALL")、“不会”("SHALL NOT")、“应该”("SHOULD")、“不该”("SHOULD NOT")、
-“推荐”("RECOMMENDED")、“可以”("MAY")和”可选“("OPTIONAL")的详细描述可参见 [RFC 2119][] 。
+關鍵詞 「必須」("MUST")、「一定不可/一定不能」("MUST NOT")、「需要」("REQUIRED")、
+「將會」("SHALL")、「不會」("SHALL NOT")、「應該」("SHOULD")、「不該」("SHOULD NOT")、
+「推薦」("RECOMMENDED")、「可以」("MAY")和」可選「("OPTIONAL")的詳細描述可參見 [RFC 2119][] 。
 
-### 参考
+### 參考
 - [RFC 2119][]
 - [RFC 3986][]
 - [RFC 7230][]
@@ -47,22 +47,22 @@ This is the response body
 [RFC 7230]:http://tools.ietf.org/html/rfc7230
 [RFC 7231]:http://tools.ietf.org/html/rfc7231
 
-1. 规范
+1. 規範
 --------
 
 ### 1.1. 消息
 
-HTTP消息是从客户机到服务器的请求或从服务器到客户端的响应。本规范分别为其定义了对于HTTP消息的接口 `Psr\Http\Message\RequestInterface` 和 `Psr\Http\Message\ResponseInterface` 。
+HTTP消息是從客戶機到服務器的請求或從服務器到客戶端的響應。本規範分別為其定義了對於HTTP消息的接口 `Psr\Http\Message\RequestInterface` 和 `Psr\Http\Message\ResponseInterface` 。
 
-`Psr\Http\Message\RequestInterface` 和     `Psr\Http\Message\ResponseInterface` 都继承自 `Psr\Http\Message\MessageInterface` 。而 `Psr\Http\Message\MessageInterface` **可以** 被直接实现，实现者 **应该** 实现 `Psr\Http\Message\RequestInterface` 和     `Psr\Http\Message\ResponseInterface` 。
+`Psr\Http\Message\RequestInterface` 和     `Psr\Http\Message\ResponseInterface` 都繼承自 `Psr\Http\Message\MessageInterface` 。而 `Psr\Http\Message\MessageInterface` **可以** 被直接實現，實現者 **應該** 實現 `Psr\Http\Message\RequestInterface` 和     `Psr\Http\Message\ResponseInterface` 。
 
-从这里开始，之后的描述中命名空间 `Psr\Http\Message` 在提到这个接口的时候将会被省略。
+從這裡開始，之後的描述中命名空間 `Psr\Http\Message` 在提到這個接口的時候將會被省略。
 
-### 1.2. HTTP头
+### 1.2. HTTP頭
 
-#### 不区分大小写的头字段名
+#### 不區分大小寫的頭字段名
 
-HTTP消息包括大小写不敏感的头字段名。头是从实现了 `MessageInterface ` 接口的类中以不区分大小写的方式获取的。例如，获取 `foo` 头与获取 `FoO` 头的返回结果是相同的。同样，设置 `Foo` 头将覆写之前的设置的 `foo` 头的值。
+HTTP消息包括大小寫不敏感的頭字段名。頭是從實現了 `MessageInterface ` 接口的類中以不區分大小寫的方式取得的。例如，取得 `foo` 頭與取得 `FoO` 頭的返回結果是相同的。同樣，設定 `Foo` 頭將覆寫之前的設定的 `foo` 頭的值。
 
 ```php
 $message = $message->withHeader('foo', 'bar');
@@ -77,13 +77,13 @@ $message = $message->withHeader('fOO', 'baz');
 echo $message->getHeaderLine('foo');
 // Outputs: baz
 ```
-尽管头能被不区分大小写地获取，但原有的大小写规范 **必须** 被保留，尤其是使用 `getHeaders()` 函数来获取头的时候。
+儘管頭能被不區分大小寫地取得，但原有的大小寫規範 **必須** 被保留，尤其是使用 `getHeaders()` 函數來取得頭的時候。
 
-不符合要求的HTTP应用程序可能依赖于一定的大小写规范，所以对于一个用户能够在创建一个请求或响应时控制HTTP报头的大小写的情况下是非常有用的。
+不符合要求的HTTP應用程序可能依賴於一定的大小寫規範，所以對於一個會員能夠在建立一個請求或響應時控制HTTP報頭的大小寫的情況下是非常有用的。
 
-#### 带有多个值的报头
+#### 帶有多個值的報頭
 
-为了能够容纳具有多个值且依然能够方便地以字符串形式传输的报头， `MessageInterface` 接口的实例能够以数组或字符串的形式来获取报头。使用 `getHeaderLine()` 方法来获取特定名称的报头的值，其形式为不区分大小写并用逗号连接的字符串，包含了所有的报头值。使用 `getHeader()` 来获取特定名称的所有报头值，其以数组形式返回结果，且不区分大小写。
+為了能夠容納具有多個值且依然能夠方便地以字符串形式傳輸的報頭， `MessageInterface` 接口的實例能夠以數組或字符串的形式來取得報頭。使用 `getHeaderLine()` 方法來取得特定名稱的報頭的值，其形式為不區分大小寫並用逗號連接的字符串，包含了所有的報頭值。使用 `getHeader()` 來取得特定名稱的所有報頭值，其以數組形式返回結果，且不區分大小寫。
 
 
 

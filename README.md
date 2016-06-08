@@ -1,23 +1,23 @@
-PHP编码规范（中文版）导读
+PHP程式碼書寫規範（正體中文版）指南
 ====================================
-本文档是PHP互操作性框架制定小组（[PHP-FIG][] :PHP Framework Interoperability Group）制定的PHP编码规范（[PSR][]:Proposing a Standards Recommendation）中译版。
+本文件是PHP通用性框架小組（[PHP-FIG][] :PHP Framework Interoperability Group）制定的PHP程式碼書寫規範（[PSR][]:Proposing a Standards Recommendation）中譯版。
 
-翻译过程中参照了 [莫希爾(Mosil)手札][] 的繁体中文版，以及 [Corrie Zhao][] 组织翻译的简体中文版，
-译文中为了让语句通顺，便于理解，没有对原文逐字翻译，个别语句与原文原意可能略有偏差，希望告知指正。
+翻譯過程中參照了 [莫希爾(Mosil)手札][] 的繁體中文版，以及 [Corrie Zhao][] 組織翻譯的簡體中文版，
+譯文中為了讓語句通順，便於理解，沒有對原文逐字翻譯，個別語句與原文原意可能略有偏差，希望告知指正。
 
-目前官方已制定的规范包括以下六份文件：
+目前官方已制定的規範包括以下六份檔案：
 
-  - [PSR-0](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-0-cn.md) (已弃用)
+  - [PSR-0](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-0-cn.md) (已棄用)
   - [PSR-1](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-1-basic-coding-standard-cn.md)
   - [PSR-2](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-2-coding-style-guide-cn.md)
-  - [PSR-2补充](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-2-coding-style-guide-meta-cn.md)
+  - [PSR-2補充](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-2-coding-style-guide-meta-cn.md)
   - [PSR-3](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-3-logger-interface-cn.md)
   - [PSR-4](https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-4-autoloader-cn.md)
 
 
 
-- 2014/04/25    添加`PSR-2补充`文件以及修改之前版本中的翻译不当与错误。
-- 2014/07/31    添加`PSR-4`。
+- 2014/04/25    增加`PSR-2補充`檔案以及修改之前版本中的翻譯不當與錯誤。
+- 2014/07/31    增加`PSR-4`。
 
 [PHP-FIG]: https://github.com/php-fig/
 [PSR]: https://github.com/php-fig/fig-standards
@@ -25,47 +25,47 @@ PHP编码规范（中文版）导读
 [Corrie Zhao]: https://github.com/hfcorriez/fig-standards
 
 
-以下是原版的导读：
+以下是原版的導讀：
 
 ---------------
 
-PHP互操作性框架制定小组
+PHP互操作性框架制定小組
 ====================================
 
-组建本小组的目的是，通过在各项目的代表之间讨论他们共同的编码规范，以制定一个协作标准。本规范的主要面向对象是本小组的各个组成成员，当然，同时也欢迎关注本规范的其它PHP社区采用本规范。
+組建本小組的目的是，通過在各項目的代表之間討論他們共同的編碼規範，以制定一個協作標準。本規範的主要面向對象是本小組的各個組成成員，當然，同時也歡迎追蹤本規範的其它PHP社區採用本規範。
 
 
-提交规范建议
+送出規範建議
 ------------------------------------
 
-可以通过以下方式给本规范提交建议:
+可以通過以下方式給本規範送出建議:
 
-- fork [PSR代码库][]，创建并检出一个分支，在 `proposed/` 下添加 规范建议，然后 push 分支到 Github，最后给我们发送一个 pull request；又或者
+- fork [PSR代碼庫][]，建立並檢出一個分支，在 `proposed/` 下增加 規範建議，然後 push 分支到 Github，最後給我們發送一個 pull request；又或者
 
-- 在 Github 下新建一个讨论 ticket；又或者
+- 在 Github 下新建一個討論 ticket；又或者
 
-- 在 [邮件列表][] 中提交建议。
+- 在 [郵件列表][] 中送出建議。
 
-[邮件列表]: http://groups.google.com/group/php-fig/
-[PSR代码库]: https://github.com/php-fig/fig-standards
+[郵件列表]: http://groups.google.com/group/php-fig/
+[PSR代碼庫]: https://github.com/php-fig/fig-standards
 
-成为投票成员
+成為投票成員
 ---------------------
 
-注意，你 **不需要** 成为投票成员才能在 [邮件列表][] 中发表言论。
+注意，你 **不需要** 成為投票成員才能在 [郵件列表][] 中發表言論。
 
-想要成为投票成员，你必须发送一封邮件到 [邮件列表][] 中。
+想要成為投票成員，你必須發送一封郵件到 [郵件列表][] 中。
 
-- 邮件主题格式如下: `Membership Request: {你的名字} ({参与的项目名称})`
+- 郵件主題格式如下: `Membership Request: {你的名字} ({參與的項目名稱})`
 
-- 邮件内容应包括你的名字、你参与的项目名称、项目的地址以及其它相关信息。
+- 郵件內容應包括你的名字、你參與的項目名稱、項目的地址以及其它相關內容。
   
-目前的成员会对你的加入请求进行投票。
+目前的成員會對你的加入請求進行投票。
 
-请不要在一份申请中提交多个加入请求，每份申请只能提交一份请求。
+請不要在一份申請中送出多個加入請求，每份申請只能送出一份請求。
 
 
-目前的成员及其代表项目列表
+目前的成員及其代表項目列表
 --------------
 
 1. Nate Abele: Lithium
@@ -78,7 +78,7 @@ PHP互操作性框架制定小组
 
 1. Jordi Boggiano: Composer, Packagist
 
-1. Pádraic Brady: Zend Framework
+1. Padraic Brady: Zend Framework
 
 1. Karma Dordrak: Zikula
 
@@ -120,4 +120,4 @@ PHP互操作性框架制定小组
 
 1. Kris Wallsmith: Assetic, Buzz
 
-1. David Zülke: Agavi
+1. David Zulke: Agavi
