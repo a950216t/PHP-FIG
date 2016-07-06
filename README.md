@@ -13,7 +13,7 @@ PHP程式碼書寫規範（正體中文版）指南
 [莫希爾(Mosil)手札]: https://github.com/mosil/fig-standards
 [Corrie Zhao]: https://github.com/hfcorriez/fig-standards
 
-以下是原版的導讀：
+以下是原版的導讀指南：
 
 ---------------
 
@@ -32,21 +32,21 @@ PHP通用性框架小組
 
 - 在 Github 下新建一個討論 ticket；又或者
 
-- 在 [郵件列表][] 中送出建議。
+- 在 [信件列表][] 中送出建議。
 
-[郵件列表]: http://groups.google.com/group/php-fig/
+[信件列表]: http://groups.google.com/group/php-fig/
 [PSR代碼庫]: https://github.com/php-fig/fig-standards
 
 成為投票成員
 ---------------------
 
-注意，你 **不需要** 成為投票成員才能在 [郵件列表][] 中發表言論。
+注意，你 **不需要** 成為投票成員才能在 [信件列表][] 中發表言論。
 
-想要成為投票成員，你必須發送一封郵件到 [郵件列表][] 中。
+想要成為投票成員，你必須發送一封信件到 [信件列表][] 中。
 
-- 郵件主題格式如下: `Membership Request: {你的名字} ({參與的項目名稱})`
+- 信件主題格式如下: `Membership Request: {你的名字} ({參與的項目名稱})`
 
-- 郵件內容應包括你的名字、你參與的項目名稱、項目的地址以及其它相關內容。
+- 信件內容應包括你的名字、你參與的項目名稱、項目的地址以及其它相關內容。
   
 目前的成員會對你的加入請求進行投票。
 
